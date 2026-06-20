@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahasin Al Lulu – Beauty Salon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --plum:    #2D1B2E;
+      --pearl:   #F8F4F0;
+      --gold:    #C9956C;
+      --blush:   #E8C5B8;
+      --ivory:   #FAF7F4;
+      --text:    #3A2A3B;
+      --muted:   #8A6E7A;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--ivory);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 5vw;
+      background: rgba(45, 27, 46, 0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; letter-spacing: .12em;
+      color: var(--blush); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+    .nav-links a {
+      font-size: .78rem; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--pearl); opacity: .75;
+      text-decoration: none; transition: opacity .25s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-book {
+      background: var(--gold); color: #fff;
+      padding: .55rem 1.4rem; border-radius: 2px;
+      font-size: .75rem; letter-spacing: .15em; font-weight: 500;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .25s;
+    }
+    .nav-book:hover { background: var(--blush); color: var(--plum); }
+ 
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--plum);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 7rem 5vw 4rem;
+    }
+ 
+    /* Pearl / geometric SVG ornament — the signature element */
+    .hero-ornament {
+      position: absolute;
+      right: -8vw; top: 50%;
+      transform: translateY(-50%);
+      width: min(72vw, 680px);
+      opacity: .09;
+      pointer-events: none;
+    }
+ 
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 680px;
+    }
+    .hero-eyebrow {
+      font-size: .72rem; letter-spacing: .32em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 1.6rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300; line-height: 1.08;
+      color: var(--pearl); margin-bottom: .5rem;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--blush);
+    }
+    .hero-arabic {
+      font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+      color: var(--gold); opacity: .7;
+      margin-bottom: 1.8rem;
+      letter-spacing: .08em;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300; color: var(--blush);
+      line-height: 1.7; max-width: 420px; margin-bottom: 2.8rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: .9rem 2.4rem;
+      font-family: 'Jost', sans-serif;
+      font-size: .8rem; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; text-decoration: none;
+      transition: background .3s, color .3s;
+    }
+    .btn-primary:hover { background: var(--gold); color: var(--plum); }
+ 
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: var(--muted); font-size: .68rem; letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 40px; background: var(--gold); opacity: .5;
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%,100% { transform: scaleY(1); opacity: .5; }
+      50% { transform: scaleY(.5); opacity: .2; }
+    }
+ 
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 5vw; }
+    .section-label {
+      font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300; line-height: 1.15; color: var(--plum);
+      margin-bottom: 1.4rem;
+    }
+    .section-body {
+      font-size: .97rem; font-weight: 300; line-height: 1.85;
+      color: var(--muted); max-width: 500px;
+    }
+ 
+    /* ── ABOUT ── */
+    .about {
+      background: var(--pearl);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw; align-items: center;
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-img-box {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(145deg, var(--blush) 0%, var(--plum) 100%);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-img-inner {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem; color: rgba(255,255,255,.12);
+      font-style: italic; user-select: none;
+      line-height: 1;
+    }
+    .about-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 55%; aspect-ratio: 1;
+      border: 1px solid var(--gold);
+      border-radius: 3px; z-index: -1;
+    }
+    .about-stat {
+      margin-top: 2.5rem;
+      display: flex; gap: 3rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300; color: var(--plum); line-height: 1;
+    }
+    .stat-label {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); margin-top: .3rem;
+    }
+ 
+    /* ── SERVICES ── */
+    .services { background: var(--ivory); }
+    .services-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 4rem;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+      background: var(--blush);
+      border: 1.5px solid var(--blush);
+    }
+    .service-card {
+      background: var(--ivory);
+      padding: 2.8rem 2.2rem;
+      transition: background .3s;
+    }
+    .service-card:hover { background: var(--plum); }
+    .service-icon {
+      font-size: 2rem; margin-bottom: 1.4rem; display: block;
+    }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 400; color: var(--plum);
+      margin-bottom: .7rem; transition: color .3s;
+    }
+    .service-card:hover .service-name { color: var(--blush); }
+    .service-desc {
+      font-size: .88rem; font-weight: 300; line-height: 1.75;
+      color: var(--muted); transition: color .3s;
+    }
+    .service-card:hover .service-desc { color: rgba(248,244,240,.65); }
+    .service-price {
+      margin-top: 1.2rem;
+      font-size: .75rem; letter-spacing: .15em;
+      color: var(--gold); font-weight: 500; text-transform: uppercase;
+      transition: color .3s;
+    }
+    .service-card:hover .service-price { color: var(--gold); }
+ 
+    /* ── EXPERIENCE / DIVIDER ── */
+    .experience {
+      background: var(--plum);
+      text-align: center; padding: 6rem 5vw;
+    }
+    .experience .section-title { color: var(--pearl); }
+    .experience .section-body { color: var(--blush); margin: 0 auto; text-align: center; }
+    .exp-divider {
+      width: 60px; height: 1px;
+      background: var(--gold); margin: 1.5rem auto;
+    }
+ 
+    /* ── GALLERY STRIP ── */
+    .gallery {
+      background: var(--pearl); padding: 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      min-height: 280px;
+    }
+    .gallery-cell {
+      aspect-ratio: 3/4;
+      background: var(--plum);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .gallery-cell:nth-child(1) { background: linear-gradient(135deg, #2D1B2E, #5a3560); }
+    .gallery-cell:nth-child(2) { background: linear-gradient(135deg, #C9956C, #e8c5b8); }
+    .gallery-cell:nth-child(3) { background: linear-gradient(135deg, #3a2a3b, #2D1B2E); }
+    .gallery-cell:nth-child(4) { background: linear-gradient(135deg, #E8C5B8, #C9956C); }
+    .gallery-cell:nth-child(5) { background: linear-gradient(135deg, #5a3560, #2D1B2E); }
+    .gallery-cell-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: rgba(255,255,255,.5); text-align: center; padding: 1rem;
+    }
+ 
+    /* ── TEAM ── */
+    .team { background: var(--ivory); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .team-card { text-align: center; }
+    .team-avatar {
+      width: 130px; height: 130px; border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      background: linear-gradient(145deg, var(--blush), var(--plum));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; color: rgba(255,255,255,.5);
+      font-style: italic;
+      border: 2px solid var(--gold);
+    }
+    .team-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--plum); margin-bottom: .2rem;
+    }
+    .team-role {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold);
+    }
+ 
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--pearl); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .testi-card {
+      background: var(--ivory);
+      padding: 2rem 1.8rem;
+      border-left: 2px solid var(--gold);
+    }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic; font-weight: 300;
+      line-height: 1.75; color: var(--text); margin-bottom: 1.2rem;
+    }
+    .testi-author {
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+ 
+    /* ── BOOKING ── */
+    .booking {
+      background: var(--plum);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw; align-items: center;
+      padding: 7rem 5vw;
+    }
+    .booking .section-title { color: var(--pearl); }
+    .booking .section-body { color: var(--blush); }
+    .booking-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-input, .form-select {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(201,149,108,.35);
+      color: var(--pearl); padding: .9rem 1.1rem;
+      font-family: 'Jost', sans-serif; font-size: .88rem; font-weight: 300;
+      border-radius: 2px; outline: none; width: 100%;
+      transition: border-color .25s;
+    }
+    .form-input::placeholder { color: rgba(248,244,240,.35); }
+    .form-input:focus, .form-select:focus { border-color: var(--gold); }
+    .form-select option { background: var(--plum); }
+    .btn-submit {
+      background: var(--gold); color: #fff;
+      padding: 1rem; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif; font-size: .82rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      border-radius: 2px; transition: background .25s;
+      margin-top: .4rem;
+    }
+    .btn-submit:hover { background: var(--blush); color: var(--plum); }
+ 
+    /* ── CONTACT BAR ── */
+    .contact-bar {
+      background: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      gap: 4vw; padding: 1.8rem 5vw;
+      flex-wrap: wrap;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: .7rem;
+      font-size: .82rem; font-weight: 500;
+      letter-spacing: .1em; color: #fff;
+    }
+    .contact-item span { font-size: 1.1rem; }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: #1a0f1b;
+      padding: 4rem 5vw 2.5rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3vw;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; color: var(--blush);
+      margin-bottom: .7rem;
+    }
+    .footer-tagline {
+      font-size: .82rem; color: var(--muted); font-weight: 300;
+      line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .social-links { display: flex; gap: 1rem; }
+    .social-link {
+      width: 36px; height: 36px; border: 1px solid rgba(201,149,108,.4);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: .85rem; color: var(--gold);
+      text-decoration: none; transition: background .25s;
+    }
+    .social-link:hover { background: var(--gold); color: #fff; }
+    .footer-col-title {
+      font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.3rem; font-weight: 500;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .footer-links a {
+      font-size: .85rem; color: var(--muted); text-decoration: none;
+      font-weight: 300; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--blush); }
+    .footer-bottom {
+      background: #1a0f1b; padding: 1.2rem 5vw;
+      border-top: 1px solid rgba(255,255,255,.06);
+      text-align: center;
+      font-size: .72rem; color: var(--muted);
+      letter-spacing: .08em;
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about, .booking { grid-template-columns: 1fr; }
+      .about-accent { display: none; }
+      footer { grid-template-columns: 1fr; gap: 2.5rem; }
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+      .gallery-cell:nth-child(4),
+      .gallery-cell:nth-child(5) { display: none; }
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+ 
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-line { animation: none; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Mahasin Al Lulu</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#booking">Book</a></li>
+    </ul>
+    <a class="nav-book" href="#booking">Book Now</a>
+  </nav>
+ 
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Signature ornament: Islamic-inspired geometric pearl motif -->
+    <svg class="hero-ornament" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="300" cy="300" r="280" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="220" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="160" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="100" stroke="white" stroke-width="1"/>
+      <circle cx="300" cy="300" r="40"  stroke="white" stroke-width="1"/>
+      <!-- 12-point star -->
+      <polygon points="300,20 320,140 340,20 340,140 360,30 340,150 380,50 350,160 410,80 360,170 450,120 370,180 490,170 380,190 520,230 390,200 530,290 395,210 520,360 390,215 490,430 375,210 430,500 355,200 350,560 330,185 260,560 325,195 190,500 300,205 140,430 275,215 80,360 255,210 70,290 245,200 80,230 240,190 110,170 230,180 150,120 240,170 190,80 250,160 220,50 260,150 240,30 280,140 260,20 300,140 300,20" fill="white" opacity="0.5" transform="scale(0.9) translate(30,30)"/>
+      <!-- Petals -->
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(0 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(30 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(60 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(90 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(120 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(150 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(180 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(210 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(240 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(270 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(300 300 300)"/>
+      <ellipse cx="300" cy="90"  rx="18" ry="60" fill="white" transform="rotate(330 300 300)"/>
+    </svg>
+ 
+    <div class="hero-content">
+      <p class="hero-eyebrow">Luxury Beauty · Est. 2018</p>
+      <h1 class="hero-title">
+        Mahasin<br><em>Al Lulu</em>
+      </h1>
+      <p class="hero-arabic">محاسن اللؤلؤ</p>
+      <p class="hero-sub">
+        Where every visit is a ritual. We craft beauty experiences as radiant and rare as a pearl — tailored to you, delivered with artistry.
+      </p>
+      <a class="btn-primary" href="#services">Explore Services</a>
+    </div>
+ 
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+ 
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-image">
+      <div class="about-img-box">
+        <span class="about-img-inner">ML</span>
+      </div>
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-text">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">Beauty rooted in<br>heritage & grace</h2>
+      <p class="section-body">
+        Mahasin Al Lulu — "Beauties of the Pearl" — was born from a belief that every woman deserves to feel luminous. Our salon blends Eastern elegance with contemporary technique, creating a sanctuary where tradition meets modern artistry.
+      </p>
+      <p class="section-body" style="margin-top:1rem;">
+        From precision haircuts to transformative skincare rituals, each service is designed to reveal your most radiant self.
+      </p>
+      <div class="about-stat">
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div>
+          <div class="stat-num">5k+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div>
+          <div class="stat-num">12</div>
+          <div class="stat-label">Expert Stylists</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <div>
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Our Services</h2>
+      </div>
+      <p class="section-body" style="max-width:320px; text-align:right;">
+        Each treatment is a curated experience performed by certified specialists using premium products.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">✂️</span>
+        <div class="service-name">Hair Styling</div>
+        <p class="service-desc">Precision cuts, blowouts, and braiding crafted to frame your features perfectly.</p>
+        <p class="service-price">From $45</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <div class="service-name">Hair Color</div>
+        <p class="service-desc">Balayage, highlights, global color, and fashion shades using ammonia-free formulas.</p>
+        <p class="service-price">From $80</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">✨</span>
+        <div class="service-name">Skincare & Facials</div>
+        <p class="service-desc">Hydrating, brightening, and anti-aging facials tailored to your skin's unique needs.</p>
+        <p class="service-price">From $65</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💅</span>
+        <div class="service-name">Nail Art</div>
+        <p class="service-desc">Classic manicure, pedicure, gel extensions, and intricate nail art designs.</p>
+        <p class="service-price">From $30</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌿</span>
+        <div class="service-name">Bridal Package</div>
+        <p class="service-desc">Full bridal preparation — hair, makeup, nails, and skincare — for your perfect day.</p>
+        <p class="service-price">From $320</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💆</span>
+        <div class="service-name">Spa & Wellness</div>
+        <p class="service-desc">Relaxing massages, aromatherapy, and body treatments to restore your inner glow.</p>
+        <p class="service-price">From $70</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- EXPERIENCE BANNER -->
+  <section class="experience">
+    <p class="section-label" style="color:var(--gold)">The Lulu Promise</p>
+    <div class="exp-divider"></div>
+    <h2 class="section-title" style="color:var(--pearl); max-width:560px; margin: 0 auto 1.2rem;">
+      You leave luminous,<br><em>every single time.</em>
+    </h2>
+    <div class="exp-divider"></div>
+    <p class="section-body">Premium products. Attentive care. A space designed for you to breathe, be still, and emerge renewed.</p>
+  </section>
+ 
+  <!-- GALLERY STRIP -->
+  <div class="gallery" aria-label="Gallery">
+    <div class="gallery-cell"><span class="gallery-cell-label">Hair</span></div>
+    <div class="gallery-cell"><span class="gallery-cell-label">Color</span></div>
+    <div class="gallery-cell"><span class="gallery-cell-label">Skincare</span></div>
+    <div class="gallery-cell"><span class="gallery-cell-label">Nails</span></div>
+    <div class="gallery-cell"><span class="gallery-cell-label">Bridal</span></div>
+  </div>
+ 
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <p class="section-label">The Experts</p>
+    <h2 class="section-title">Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">L</div>
+        <div class="team-name">Layla Hassan</div>
+        <div class="team-role">Creative Director & Senior Stylist</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">N</div>
+        <div class="team-name">Nour Al-Rashid</div>
+        <div class="team-role">Color Specialist</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">R</div>
+        <div class="team-name">Rania Farouk</div>
+        <div class="team-role">Skincare & Spa Expert</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">S</div>
+        <div class="team-name">Sara Khalil</div>
+        <div class="team-role">Nail Art Artist</div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <p class="section-label">Client Words</p>
+    <h2 class="section-title">Voices of Our Community</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"I've tried many salons, but Mahasin Al Lulu is something else entirely. The atmosphere, the attention to detail — I felt truly cared for."</p>
+        <p class="testi-author">— Aisha M.</p>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Layla transformed my hair for my wedding day. I cried when I saw myself — happy tears. This team is magical."</p>
+        <p class="testi-author">— Fatima K.</p>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"The facial I had here was the most relaxing 90 minutes of my life. My skin has never looked better. I won't go anywhere else."</p>
+        <p class="testi-author">— Mariam T.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+    <div class="booking-info">
+      <p class="section-label" style="color:var(--gold)">Reserve Your Moment</p>
+      <h2 class="section-title">Book an Appointment</h2>
+      <p class="section-body">
+        Choose your service, pick a time, and let us take care of the rest. Walk-ins welcome, appointments preferred.
+      </p>
+      <div style="margin-top:2rem; display:flex; flex-direction:column; gap:.8rem;">
+        <div class="contact-item" style="color:var(--blush)"><span>📍</span> Al Khan Majaz 3 Sharjah</div>
+        <div class="contact-item" style="color:var(--blush)"><span>📞</span> +971 56 126 8043</div>
+        <div class="contact-item" style="color:var(--blush)"><span>🕐</span> Sat–Thu: 9 AM – 9 PM</div>
+      </div>
+    </div>
+    <form class="booking-form" onsubmit="handleBook(event)">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Your Name" required />
+        <input class="form-input" type="tel" placeholder="Phone Number" required />
+      </div>
+      <input class="form-input" type="email" placeholder="Email Address" />
+      <select class="form-select">
+        <option value="" disabled selected>Select a Service</option>
+        <option>Hair Styling</option>
+        <option>Hair Color</option>
+        <option>Skincare & Facial</option>
+        <option>Nail Art</option>
+        <option>Bridal Package</option>
+        <option>Spa & Wellness</option>
+      </select>
+      <div class="form-row">
+        <input class="form-input" type="date" />
+        <input class="form-input" type="time" />
+      </div>
+      <button class="btn-submit" type="submit">Confirm Booking</button>
+    </form>
+  </section>
+ 
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <div class="contact-item"><span>📞</span> +971 56 126 8043</div>
+    <div class="contact-item"><span>📧</span> mahasinallulu85@gmail.com</div>
+    <div class="contact-item"><span>📍</span> Al Khan Majaz 3 Sharjah </div>
+    <div class="contact-item"><span>🕐</span> Sat–Thu: 9 AM – 9 PM</div>
+  </div>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">Mahasin Al Lulu</div>
+      <p class="footer-tagline">A sanctuary of beauty and grace.<br>Where every woman shines like a pearl.</p>
+      <div class="social-links">
+        <a class="social-link" href="#" aria-label="Instagram">◈</a>
+        <a class="social-link" href="#" aria-label="Facebook">◉</a>
+        <a class="social-link" href="#" aria-label="TikTok">◐</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Services</p>
+      <ul class="footer-links">
+        <li><a href="#services">Hair Styling</a></li>
+        <li><a href="#services">Hair Color</a></li>
+        <li><a href="#services">Skincare</a></li>
+        <li><a href="#services">Nail Art</a></li>
+        <li><a href="#services">Bridal</a></li>
+        <li><a href="#services">Spa & Wellness</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Visit Us</p>
+      <ul class="footer-links">
+        <li><a href="#">Al Khan Majaz 3 Sharjah</a></li>
+        <li><a href="#">+971 56 126 8043</a></li>
+        <li><a href="#">mahasinallulu85@gmail.com</a></li>
+        <li><a href="#booking">Book Appointment</a></li>
+        <li><a href="#about">Our Story</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2025 Mahasin Al Lulu Beauty Salon. All rights reserved.</div>
+ 
+  <script>
+    function handleBook(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = '✓ Booking Confirmed!';
+      btn.style.background = '#5a3560';
+      setTimeout(() => {
+        btn.textContent = 'Confirm Booking';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+ 
+</body>
+</html>
